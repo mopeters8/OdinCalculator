@@ -1,9 +1,21 @@
 console.log("script loaded..");
 
-function operate(operator, num1, num2) {
-  if (operator === null || num1 === null || num2 === null) {
+let firstNum = "";
+let operator = "";
+let secondNum = "";
+
+function operate() {
+  console.log("calculating...");
+  if (
+    operator === undefined ||
+    firstNum === undefined ||
+    secondNum === undefined
+  ) {
     return "error in operating";
   }
+
+  let num1 = Number(firstNum);
+  let num2 = Number(secondNum);
 
   let total = 0;
   if (operator === "+") {
@@ -13,10 +25,16 @@ function operate(operator, num1, num2) {
   } else if (operator === "-") {
     total = subtract(num1, num2);
   } else if (operator === "/") {
-    total = divide(num1, num2);
+    if (firstNum == 0 || secondNum == 0) {
+      total = "DIVDED BY ZERO DETECTED. ROBOT EARTH INVASION INITIATED.";
+    } else {
+      total = divide(num1, num2);
+    }
   }
 
-  return total;
+  console.log(total);
+  finishedOperation(total);
+  updateDisplay(firstNum);
 }
 
 const add = function (num1, num2) {
@@ -41,28 +59,46 @@ const divide = function (num1, num2) {
 };
 
 // Functions for receiving input
+function addNumberButtonEvents() {
+  console.log("adding number events..");
+  const allNumberButtons = document.querySelectorAll(".number");
 
-let firstNum = "";
-let operator = "";
-let secondNum = "";
-
-function addButtonEvents() {
-  console.log("adding button events..");
-  const parentCalcButtons = document.getElementById("calcButtons");
-  const allChildButtons = parentCalcButtons.querySelectorAll("div");
-
-  allChildButtons.forEach((button) => {
+  allNumberButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      //   updateDisplay(button.textContent);
-
-      if (button.classList.contains("number") && operator === "") {
+      if (operator === "") {
         firstNum += button.textContent;
-      } else if (button.classList.contains("operand") && operator === "") {
-        operator = button.textContent;
-      } else if (!button.classList.contains("empty")) {
+        updateDisplay(firstNum);
+      } else if (!operator !== "") {
         secondNum += button.textContent;
+        updateDisplay(secondNum);
       }
-      console.log(firstNum + " " + operator + " " + secondNum);
+      console.log(
+        "Number button pressed..\n" +
+          firstNum +
+          " " +
+          operator +
+          " " +
+          secondNum
+      );
+    });
+  });
+}
+
+function addOperandButtonEvents() {
+  console.log("adding operand events..");
+  const allOperandButtons = document.querySelectorAll(".operand");
+
+  allOperandButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      operator = button.textContent;
+      console.log(
+        "Operand button pressed..\n" +
+          firstNum +
+          " " +
+          operator +
+          " " +
+          secondNum
+      );
     });
   });
 }
@@ -72,16 +108,23 @@ const calcDisplay = document.querySelector(".calcDisplay");
 let currentDisplayValue = "";
 
 function updateDisplay(newDisVal) {
-  currentDisplayValue += newDisVal;
+  currentDisplayValue = newDisVal;
   calcDisplay.textContent = currentDisplayValue;
 }
 
-function clearDisplay() {
-  currentDisplayValue = "";
-  calcDisplay.textContent = "empty";
-  firstNum = "";
+function finishedOperation(newFirstNum) {
+  firstNum = newFirstNum;
   operator = "";
   secondNum = "";
 }
 
-addButtonEvents();
+function clearDisplay() {
+  firstNum = "";
+  operator = "";
+  secondNumNum = "";
+  currentDisplayValue = "";
+  calcDisplay.textContent = "0";
+}
+
+addNumberButtonEvents();
+addOperandButtonEvents();

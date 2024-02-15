@@ -7,29 +7,37 @@
     <title>Calculator App</title>
   </head>
   <body>
-    <h1>Odin Calculator</h1>
     <section class="mainBody">
       <div class="calcGUI">
         <div class="calcScreen">
-          <span id="displayValue" class="calcDisplay">empty</span>
+          <span id="displayValue" class="calcDisplay">0</span>
         </div>
         <div id="calcButtons">
-          <div id="b1" class="number">1</div>
-          <div id="b2" class="number">2</div>
-          <div id="b3" class="number">3</div>
-          <div id="b4" class="number">4</div>
-          <div id="b5" class="number">5</div>
-          <div id="b6" class="number">6</div>
-          <div id="b7" class="number">7</div>
-          <div id="b8" class="number">8</div>
-          <div id="b9" class="number">9</div>
-          <div id="b0" class="number">0</div>
-          <div id="addition" class="operand">+</div>
-          <div id="subtract" class="operand">-</div>
-          <div id="multiply" class="operand">*</div>
-          <div id="divide" class="operand">/</div>
-          <div id="equals" class="calculate">=</div>
-          <div id="clear" class="empty" onclick="clearDisplay()">clear</div>
+          <div class="clearRow">
+            <div class="clear" onclick="clearDisplay()">C</div>
+            <div class="clear AC" onclick="clearDisplay()">AC</div>
+          </div>
+          <div class="restOfButtons">
+            <div id="b0" class="number">0</div>
+            <div id="equals" class="calculate">.</div>
+            <div id="equals" class="calculate" onclick="operate()">=</div>
+            <div id="addition" class="operand">+</div>
+
+            <div id="b1" class="number">1</div>
+            <div id="b2" class="number">2</div>
+            <div id="b3" class="number">3</div>
+            <div id="subtract" class="operand">-</div>
+
+            <div id="b4" class="number">4</div>
+            <div id="b5" class="number">5</div>
+            <div id="b6" class="number">6</div>
+            <div id="multiply" class="operand">*</div>
+
+            <div id="b7" class="number">7</div>
+            <div id="b8" class="number">8</div>
+            <div id="b9" class="number">9</div>
+            <div id="divide" class="operand">/</div>
+          </div>
         </div>
       </div>
     </section>
