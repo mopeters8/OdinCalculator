@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
     <title>Calculator App</title>
   </head>
   <body>
@@ -12,8 +18,15 @@
         <div class="calcScreen">
           <span id="displayValue" class="calcDisplay">0</span>
         </div>
+        <div class="productName">
+          <p>CASIO</p>
+          <p class="mini">MICRO-MINI</p>
+        </div>
         <div id="calcButtons">
           <div class="clearRow">
+            <div class="clear" id="powerButton" onclick="togglePower()">
+              <div id="greyBox"></div>
+            </div>
             <div class="clear" onclick="clearDisplay()">C</div>
             <div class="clear AC" onclick="clearDisplay()">AC</div>
           </div>
